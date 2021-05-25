@@ -37,3 +37,5 @@ class SearchAPIView(ListAPIView):
 class NewsAPIView(ListAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ('id',)

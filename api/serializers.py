@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer, CharField, StringRelatedField, MultipleChoiceField
 from rest_framework import serializers
 from django_filters import rest_framework as filters
-from .models import Blog, Category, Tag, Author, News
+from .models import Blog, Category, Role, Tag, Author, News
 
 class AuthorSenderSerializer(ModelSerializer):
     class Meta:
@@ -42,8 +42,15 @@ class TagSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class RoleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Role
+        fields = '__all__'
+
+
 class AuthorSerializer(serializers.ModelSerializer):
-    role = CharField(source='role.name')
+    role = RoleSerializer
 
     class Meta:
         model = Author
